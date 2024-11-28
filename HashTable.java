@@ -1,6 +1,6 @@
 public class HashTable {
-    private final int bucket = 1009;
-    private final PhoneList[] table;
+    protected static final int bucket = 1009;
+    protected final PhoneList[] table;
 
     public HashTable() {
         table = new PhoneList[bucket];
@@ -12,49 +12,42 @@ public class HashTable {
     public void insert(String name, String phone) {
         int index = (int) calc_hash(name);
 
-        PhoneList bucketList = table[index];
-
-        if (bucketList.IsinList(name)) {
+        if (table[index].IsinList(name)) {
             System.out.println("Contact with Name "+name+" Already inserted into the Hash Table 📲");
             System.out.println();
         } else {
-            bucketList.AddContact(name, phone);
+            table[index].AddContact(name, phone);
         }
     }
 
     public void update(String name, String phone) {
         int index = (int) calc_hash(name);
-        PhoneList bucketList = table[index];
-        if (bucketList.IsinList(name)) {
-            bucketList.update(name,phone);
+        if (table[index].IsinList(name)) {
+            table[index].update(name,phone);
         }
     }
 
     public void delete(String name) {
         int index = (int) calc_hash(name);
-        PhoneList bucketList = table[index];
-        if (bucketList.IsinList(name)) {
-            bucketList.DeleteContent(name);
+        if (table[index].IsinList(name)) {
+            table[index].DeleteContent(name);
         }else{
             System.out.println("Contact With Name "+name+" Not in Hash Table ⚠️");
         }
     }
     public void Search(String name) {
         int index = (int) calc_hash(name);
-        PhoneList bucketList = table[index];
-        bucketList.Search(name);
+        table[index].Search(name);
     }
 
     public void printHashTable() {
         for (int i = 0; i < bucket; i++) {
-            PhoneList bucketList = table[i];
-            if (bucketList == null || bucketList.isEmpty()) {
+            if (table[i] == null || table[i].isEmpty()) {
                 continue;
             } else {
-                System.out.print(i);
-                bucketList.Display();
+                System.out.print(i+"]");
+                table[i].Display();
             }
-            System.out.println();
         }
     }
 
@@ -73,8 +66,8 @@ public class HashTable {
         hash ^= (hash >> 11);
         hash += (hash << 15);
 
-        if (hash > 0) return hash % 1009;
-        else return -hash % 1009;
+        if (hash > 0) return hash % bucket;
+        else return -hash % bucket;
     }
 
 }
