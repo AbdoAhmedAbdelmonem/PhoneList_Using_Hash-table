@@ -1,5 +1,5 @@
 public class HashTable {
-    protected static final int bucket = 1009;
+    protected static final int bucket = 12;
     protected final PhoneList[] table;
 
     public HashTable() {
@@ -12,7 +12,7 @@ public class HashTable {
     public void insert(String name, String phone) {
         int index = (int) calc_hash(name);
 
-        if (table[index].IsinList(name)) {
+        if (table[index].IsinListN(name)) {
             System.out.println("Contact with Name "+name+" Already inserted into the Hash Table 📲");
             System.out.println();
         } else {
@@ -22,14 +22,14 @@ public class HashTable {
 
     public void update(String name, String phone) {
         int index = (int) calc_hash(name);
-        if (table[index].IsinList(name)) {
+        if (table[index].IsinListN(name)) {
             table[index].update(name,phone);
         }
     }
 
     public void delete(String name) {
         int index = (int) calc_hash(name);
-        if (table[index].IsinList(name)) {
+        if (table[index].IsinListN(name)) {
             table[index].DeleteContent(name);
         }else{
             System.out.println("Contact With Name "+name+" Not in Hash Table ⚠️");
