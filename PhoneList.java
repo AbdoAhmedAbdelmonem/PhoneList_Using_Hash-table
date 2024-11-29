@@ -7,7 +7,7 @@ public class PhoneList {
 
     public void AddContact(String name, String phone) {
         ContactNode newNode = new ContactNode(name, phone);
-        if (IsinList(name)) {
+        if (IsinListN(name)) {
             System.out.println("Phone Contact with Name " + name + " already exists 🙆‍♂️👀");
             System.out.println();
             return;
@@ -114,7 +114,7 @@ public class PhoneList {
         return head == null;
     }
 
-    public boolean IsinList( String name ){
+    public boolean IsinListN( String name ){
         ContactNode current = head;
         while(current != null){
             if(current.firstName.equals(name)){
@@ -134,5 +134,4 @@ public class PhoneList {
         }
         return false;
     }
-
 }
