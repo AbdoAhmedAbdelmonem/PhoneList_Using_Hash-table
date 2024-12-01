@@ -2,14 +2,14 @@ public class HashTable {
     protected static final int bucket = 12;
     protected final PhoneList[] table;
 
-    public HashTable() {
+    public HashTable() { //constructor o(n)
         table = new PhoneList[bucket];
         for (int i = 0; i < bucket; i++) {
             table[i] = new PhoneList();
         }
     }
 
-    public void insert(String name, String phone) {
+    public void insert(String name, String phone) { //o(n)
         int index = (int) calc_hash(name);
 
         if (table[index].IsinListN(name)) {
@@ -20,14 +20,14 @@ public class HashTable {
         }
     }
 
-    public void update(String name, String phone) {
+    public void update(String name, String phone) {//o(n)
         int index = (int) calc_hash(name);
         if (table[index].IsinListN(name)) {
             table[index].update(name,phone);
         }
     }
 
-    public void delete(String name) {
+    public void delete(String name) {//o(n)
         int index = (int) calc_hash(name);
         if (table[index].IsinListN(name)) {
             table[index].DeleteContent(name);
@@ -35,12 +35,12 @@ public class HashTable {
             System.out.println("Contact With Name "+name+" Not in Hash Table ⚠️");
         }
     }
-    public void Search(String name) {
+    public void Search(String name) {//o(n)
         int index = (int) calc_hash(name);
         table[index].Search(name);
     }
 
-    public void printHashTable() {
+    public void printHashTable() {//o(n)
         for (int i = 0; i < bucket; i++) {
             if (table[i] == null || table[i].isEmpty()) {
                 continue;
@@ -53,7 +53,7 @@ public class HashTable {
 
 
 
-    public static long calc_hash(String key) {
+    public static long calc_hash(String key) {//o(n)
         int i, l = key.length();
         long hash = 0;
 
